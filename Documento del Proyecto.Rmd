@@ -1,0 +1,22 @@
+---
+title: "Proyecto Big Data"
+author: "Miguel Morales"
+output: html_document
+---
+
+
+# **1. Introducción**
+El racismo y la discriminación son problemas persistentes en la sociedad boliviana actual, y si bien se ha avanzado en el terreno de la desconolización y despatriarcalización -acuñados después de la creación del Estado Plurinacional de Bolivia- aún persisten a día de hoy, y es un tema a progresar tanto por el Estado como por la sociedad.
+En el presente informe se presentan datos relacionado con el racismo, como estadíscos y gráficos realizados a traves de bases de datos provinientes de diversas fuentes, como la encuesta de racismo que se realizó en la Encuesta a Hogares de 2019, para que nos ayuden a visualizar tanto como se percibe de como se sufre de este delito en los departamentos de Bolivia. 
+
+# **2. Objetivos**
+Como objetivo del presente estudio, se pretende establecer un registro del racismo y discriminacion que se frecuenta en Bolivia, a través de estadísticas y gráficos que permitan visualizar desde los lugares más frecuentes de esta practica a el delito más común, y establecer el perfil de la víctima.
+Como objetivos específicos, se plantea:
+ * Establecer los porcentajes de discriminación a nivel departamental.
+ * Determinar la causa más frecuente de racismo.
+ * Determinar el porcentaje de denuncias realizadas por las vícitmas
+ * Determinar la causa más común para no denunciar los hechos delictivos.
+ * Con los anteriores objetivos, establecer un perfil de la victima.
+
+# **3.Motivación**
+Dada la historia de La Paz, y en consecuencia, la de Bolivia, somos concientes de la cantidad de racismo presente en la ciudad, de estratos sociales y económicos altos hacia los bajos, y como esto llevó a sublevaciones por los últimos hacia los primeros, en esperanzas de poder frenar la desigualdad tan marcada en la sociedad. En los últimos años, el racismo es una práctica en descenso, en parte por que existen leyes que castigan estas prácticas, pero sigue estando enraizada en la ciudad, por lo que es importante visibilizar a través de datos como se violentan los derechos de las personas, en especial de aquellas de ascendencia indígena. Es este el motivo de este trabajo, habiendo sido testigo del racismo persistente en la sociedad, que llega a mostrar su verdadera cara en momentos tensos del paradigma político y social. 
