@@ -1,0 +1,218 @@
+---
+title: "Dashboard del Proyecto"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(shiny)
+library(dplyr)
+library(plotly)
+library(ggplot2)
+library(knitr)
+library(sf)
+library(sp)
+library(sparklyr)
+```
+
+```{r}
+rm(list=ls())
+setwd("E:\\Nueva carpeta\\Docs\\I 2021\\Big data\\Proyecto Est383\\Proyecto-Est-383")
+eh19d<-read.csv("https://raw.githubusercontent.com/miguelmoralesr/Proyecto-Est-383/main/EH19Discriminacion.csv")
+sc<-spark_connect(master="local",version = "2.4.7")
+```
+
+Indicadores 1,2,3 
+=======================================================================
+
+Column {data-width=450}
+-----------------------------------------------------------------------
+
+### Indicador 1: Total de agresiones discriminatorias en cada departamento
+
+```{r}
+bol_map<-st_read("limites_departamentales_bol.shp")
+lp<- eh19d %>% filter(depto=="La Paz") %>% mutate(s12a_01a=as.numeric(factor(s12a_01a)), genero=sum(s12a_01a<=1), s12a_01b=as.numeric(factor(s12a_01b)), edad=sum(s12a_01b<=1), s12a_01c=as.numeric(factor(s12a_01c)), sexo=sum(s12a_01c<=1), s12a_01d=as.numeric(factor(s12a_01d)), col_piel=sum(s12a_01d<=1), s12a_01e=as.numeric(factor(s12a_01e)), npioc=sum(s12a_01e<=1), s12a_01f=as.numeric(factor(s12a_01f)), idioma=sum(s12a_01f<=1), s12a_01g=as.numeric(factor(s12a_01g)), vest=sum(s12a_01g<=1), s12a_01h=as.numeric(factor(s12a_01h)), extranjero=sum(s12a_01h<=1), s12a_01i=as.numeric(factor(s12a_01i)), discap=sum(s12a_01i<=1), s12a_01j=as.numeric(factor(s12a_01j)), religion=sum(s12a_01j<=1), s12a_01k=as.numeric(factor(s12a_01k)), pobreza=sum(s12a_01k<=1), s12a_01l=as.numeric(factor(s12a_01l)), otro=sum(s12a_01l<=1)) %>% select(depto, genero, edad, sexo, col_piel, npioc, idioma, vest, extranjero, discap, religion, pobreza, otro) %>% distinct()
+sc<- eh19d %>% filter(depto=="Santa Cruz") %>% mutate(s12a_01a=as.numeric(factor(s12a_01a)), genero=sum(s12a_01a<=1), s12a_01b=as.numeric(factor(s12a_01b)), edad=sum(s12a_01b<=1), s12a_01c=as.numeric(factor(s12a_01c)), sexo=sum(s12a_01c<=1), s12a_01d=as.numeric(factor(s12a_01d)), col_piel=sum(s12a_01d<=1), s12a_01e=as.numeric(factor(s12a_01e)), npioc=sum(s12a_01e<=1), s12a_01f=as.numeric(factor(s12a_01f)), idioma=sum(s12a_01f<=1), s12a_01g=as.numeric(factor(s12a_01g)), vest=sum(s12a_01g<=1), s12a_01h=as.numeric(factor(s12a_01h)), extranjero=sum(s12a_01h<=1), s12a_01i=as.numeric(factor(s12a_01i)), discap=sum(s12a_01i<=1), s12a_01j=as.numeric(factor(s12a_01j)), religion=sum(s12a_01j<=1), s12a_01k=as.numeric(factor(s12a_01k)), pobreza=sum(s12a_01k<=1), s12a_01l=as.numeric(factor(s12a_01l)), otro=sum(s12a_01l<=1)) %>% select(depto, genero, edad, sexo, col_piel, npioc, idioma, vest, extranjero, discap, religion, pobreza, otro) %>% distinct()
+cb<- eh19d %>% filter(depto=="Cochabamba") %>% mutate(s12a_01a=as.numeric(factor(s12a_01a)), genero=sum(s12a_01a<=1), s12a_01b=as.numeric(factor(s12a_01b)), edad=sum(s12a_01b<=1), s12a_01c=as.numeric(factor(s12a_01c)), sexo=sum(s12a_01c<=1), s12a_01d=as.numeric(factor(s12a_01d)), col_piel=sum(s12a_01d<=1), s12a_01e=as.numeric(factor(s12a_01e)), npioc=sum(s12a_01e<=1), s12a_01f=as.numeric(factor(s12a_01f)), idioma=sum(s12a_01f<=1), s12a_01g=as.numeric(factor(s12a_01g)), vest=sum(s12a_01g<=1), s12a_01h=as.numeric(factor(s12a_01h)), extranjero=sum(s12a_01h<=1), s12a_01i=as.numeric(factor(s12a_01i)), discap=sum(s12a_01i<=1), s12a_01j=as.numeric(factor(s12a_01j)), religion=sum(s12a_01j<=1), s12a_01k=as.numeric(factor(s12a_01k)), pobreza=sum(s12a_01k<=1), s12a_01l=as.numeric(factor(s12a_01l)), otro=sum(s12a_01l<=1)) %>% select(depto, genero, edad, sexo, col_piel, npioc, idioma, vest, extranjero, discap, religion, pobreza, otro) %>% distinct()
+cq<- eh19d %>% filter(depto=="Chuquisaca") %>% mutate(s12a_01a=as.numeric(factor(s12a_01a)), genero=sum(s12a_01a<=1), s12a_01b=as.numeric(factor(s12a_01b)), edad=sum(s12a_01b<=1), s12a_01c=as.numeric(factor(s12a_01c)), sexo=sum(s12a_01c<=1), s12a_01d=as.numeric(factor(s12a_01d)), col_piel=sum(s12a_01d<=1), s12a_01e=as.numeric(factor(s12a_01e)), npioc=sum(s12a_01e<=1), s12a_01f=as.numeric(factor(s12a_01f)), idioma=sum(s12a_01f<=1), s12a_01g=as.numeric(factor(s12a_01g)), vest=sum(s12a_01g<=1), s12a_01h=as.numeric(factor(s12a_01h)), extranjero=sum(s12a_01h<=1), s12a_01i=as.numeric(factor(s12a_01i)), discap=sum(s12a_01i<=1), s12a_01j=as.numeric(factor(s12a_01j)), religion=sum(s12a_01j<=1), s12a_01k=as.numeric(factor(s12a_01k)), pobreza=sum(s12a_01k<=1), s12a_01l=as.numeric(factor(s12a_01l)), otro=sum(s12a_01l<=1)) %>% select(depto, genero, edad, sexo, col_piel, npioc, idioma, vest, extranjero, discap, religion, pobreza, otro) %>% distinct()
+pd<- eh19d %>% filter(depto=="Pando") %>% mutate(s12a_01a=as.numeric(factor(s12a_01a)), genero=sum(s12a_01a<=1), s12a_01b=as.numeric(factor(s12a_01b)), edad=sum(s12a_01b<=1), s12a_01c=as.numeric(factor(s12a_01c)), sexo=sum(s12a_01c<=1), s12a_01d=as.numeric(factor(s12a_01d)), col_piel=sum(s12a_01d<=1), s12a_01e=as.numeric(factor(s12a_01e)), npioc=sum(s12a_01e<=1), s12a_01f=as.numeric(factor(s12a_01f)), idioma=sum(s12a_01f<=1), s12a_01g=as.numeric(factor(s12a_01g)), vest=sum(s12a_01g<=1), s12a_01h=as.numeric(factor(s12a_01h)), extranjero=sum(s12a_01h<=1), s12a_01i=as.numeric(factor(s12a_01i)), discap=sum(s12a_01i<=1), s12a_01j=as.numeric(factor(s12a_01j)), religion=sum(s12a_01j<=1), s12a_01k=as.numeric(factor(s12a_01k)), pobreza=sum(s12a_01k<=1), s12a_01l=as.numeric(factor(s12a_01l)), otro=sum(s12a_01l<=1)) %>% select(depto, genero, edad, sexo, col_piel, npioc, idioma, vest, extranjero, discap, religion, pobreza, otro) %>% distinct()
+bn <- eh19d %>% filter(depto=="Beni") %>% mutate(s12a_01a=as.numeric(factor(s12a_01a)), genero=sum(s12a_01a<=1), s12a_01b=as.numeric(factor(s12a_01b)), edad=sum(s12a_01b<=1), s12a_01c=as.numeric(factor(s12a_01c)), sexo=sum(s12a_01c<=1), s12a_01d=as.numeric(factor(s12a_01d)), col_piel=sum(s12a_01d<=1), s12a_01e=as.numeric(factor(s12a_01e)), npioc=sum(s12a_01e<=1), s12a_01f=as.numeric(factor(s12a_01f)), idioma=sum(s12a_01f<=1), s12a_01g=as.numeric(factor(s12a_01g)), vest=sum(s12a_01g<=1), s12a_01h=as.numeric(factor(s12a_01h)), extranjero=sum(s12a_01h<=1), s12a_01i=as.numeric(factor(s12a_01i)), discap=sum(s12a_01i<=1), s12a_01j=as.numeric(factor(s12a_01j)), religion=sum(s12a_01j<=1), s12a_01k=as.numeric(factor(s12a_01k)), pobreza=sum(s12a_01k<=1), s12a_01l=as.numeric(factor(s12a_01l)), otro=sum(s12a_01l<=1)) %>% select(depto, genero, edad, sexo, col_piel, npioc, idioma, vest, extranjero, discap, religion, pobreza, otro) %>% distinct()
+or<-eh19d %>% filter(depto=="Oruro") %>% mutate(s12a_01a=as.numeric(factor(s12a_01a)), genero=sum(s12a_01a<=1), s12a_01b=as.numeric(factor(s12a_01b)), edad=sum(s12a_01b<=1), s12a_01c=as.numeric(factor(s12a_01c)), sexo=sum(s12a_01c<=1), s12a_01d=as.numeric(factor(s12a_01d)), col_piel=sum(s12a_01d<=1), s12a_01e=as.numeric(factor(s12a_01e)), npioc=sum(s12a_01e<=1), s12a_01f=as.numeric(factor(s12a_01f)), idioma=sum(s12a_01f<=1), s12a_01g=as.numeric(factor(s12a_01g)), vest=sum(s12a_01g<=1), s12a_01h=as.numeric(factor(s12a_01h)), extranjero=sum(s12a_01h<=1), s12a_01i=as.numeric(factor(s12a_01i)), discap=sum(s12a_01i<=1), s12a_01j=as.numeric(factor(s12a_01j)), religion=sum(s12a_01j<=1), s12a_01k=as.numeric(factor(s12a_01k)), pobreza=sum(s12a_01k<=1), s12a_01l=as.numeric(factor(s12a_01l)), otro=sum(s12a_01l<=1)) %>% select(depto, genero, edad, sexo, col_piel, npioc, idioma, vest, extranjero, discap, religion, pobreza, otro) %>% distinct()
+pt<- eh19d %>% filter(depto=="Potosí") %>% mutate(s12a_01a=as.numeric(factor(s12a_01a)), genero=sum(s12a_01a<=1), s12a_01b=as.numeric(factor(s12a_01b)), edad=sum(s12a_01b<=1), s12a_01c=as.numeric(factor(s12a_01c)), sexo=sum(s12a_01c<=1), s12a_01d=as.numeric(factor(s12a_01d)), col_piel=sum(s12a_01d<=1), s12a_01e=as.numeric(factor(s12a_01e)), npioc=sum(s12a_01e<=1), s12a_01f=as.numeric(factor(s12a_01f)), idioma=sum(s12a_01f<=1), s12a_01g=as.numeric(factor(s12a_01g)), vest=sum(s12a_01g<=1), s12a_01h=as.numeric(factor(s12a_01h)), extranjero=sum(s12a_01h<=1), s12a_01i=as.numeric(factor(s12a_01i)), discap=sum(s12a_01i<=1), s12a_01j=as.numeric(factor(s12a_01j)), religion=sum(s12a_01j<=1), s12a_01k=as.numeric(factor(s12a_01k)), pobreza=sum(s12a_01k<=1), s12a_01l=as.numeric(factor(s12a_01l)), otro=sum(s12a_01l<=1)) %>% select(depto, genero, edad, sexo, col_piel, npioc, idioma, vest, extranjero, discap, religion, pobreza, otro) %>% distinct()
+tj<- eh19d %>% filter(depto=="Tarija") %>% mutate(s12a_01a=as.numeric(factor(s12a_01a)), genero=sum(s12a_01a<=1), s12a_01b=as.numeric(factor(s12a_01b)), edad=sum(s12a_01b<=1), s12a_01c=as.numeric(factor(s12a_01c)), sexo=sum(s12a_01c<=1), s12a_01d=as.numeric(factor(s12a_01d)), col_piel=sum(s12a_01d<=1), s12a_01e=as.numeric(factor(s12a_01e)), npioc=sum(s12a_01e<=1), s12a_01f=as.numeric(factor(s12a_01f)), idioma=sum(s12a_01f<=1), s12a_01g=as.numeric(factor(s12a_01g)), vest=sum(s12a_01g<=1), s12a_01h=as.numeric(factor(s12a_01h)), extranjero=sum(s12a_01h<=1), s12a_01i=as.numeric(factor(s12a_01i)), discap=sum(s12a_01i<=1), s12a_01j=as.numeric(factor(s12a_01j)), religion=sum(s12a_01j<=1), s12a_01k=as.numeric(factor(s12a_01k)), pobreza=sum(s12a_01k<=1), s12a_01l=as.numeric(factor(s12a_01l)), otro=sum(s12a_01l<=1)) %>% select(depto, genero, edad, sexo, col_piel, npioc, idioma, vest, extranjero, discap, religion, pobreza, otro) %>% distinct()
+ind1<- do.call("rbind", list(cq,lp,cb,or,pt,tj,sc,bn,pd))
+ind1[5,1]="Potosi"
+ind1$num_disc<-rowSums(ind1[2:13])
+ind1a<-ind1 %>% group_by(depto) %>% select(depto, num_disc)
+bol_map <- bol_map %>% left_join(ind1a, by = c("NOMBRE" = "depto"))
+map_disc<-bol_map %>% ggplot(aes(fill = num_disc)) + geom_sf(colour = "grey75", size = 0.07) + labs(title = "Bolivia: Total de agresiones discriminatorias por departamento", caption = "Datos: Encuesta Hogares 2019") + scale_fill_gradient("Número de agresiones", high="blue", low="white") + theme_bw() 
+ggplotly(map_disc)
+```
+
+Row {data-width=450}
+-----------------------------------------------------------------------
+
+### Indicador 2: Número de personas agredidas por NPIOC, según departamento
+
+```{r}
+npioc1 <- ind1 %>% select(depto, npioc)
+ind2<-ggplot(npioc1, aes(depto, npioc)) + geom_bar(stat = "identity")
+ggplotly(ind2)
+```
+
+### Indicador 3: Número de personas agredidas por color de piel, según departamento
+
+```{r}
+colo_piel <- ind1 %>% select(depto, col_piel)
+ind3<-ggplot(colo_piel, aes(depto, col_piel)) + geom_bar(stat = "identity")
+ggplotly(ind3)
+```
+
+Indicadores 4,5 
+=======================================================================
+
+Column {data-width=450}
+-----------------------------------------------------------------------
+
+### Indicador 4: Número de denuncias realizadas por departamento
+
+```{r}
+aux1 <- eh19d %>% mutate(s12a_02=as.numeric(factor(s12a_02))) %>% filter(s12a_02==1) %>% select(depto, s12a_02)
+cqden<-aux1 %>% filter(depto=="Chuquisaca") %>% mutate(denuncias=sum(s12a_02)) %>% select(depto,denuncias) %>% distinct()
+cbden<-aux1 %>% filter(depto=="Cochabamba") %>% mutate(denuncias=sum(s12a_02)) %>% select(depto,denuncias) %>% distinct()
+bnden<-aux1 %>% filter(depto=="Beni") %>% mutate(denuncias=sum(s12a_02)) %>% select(depto,denuncias) %>% distinct()
+lpden<-aux1 %>% filter(depto=="La Paz") %>% mutate(denuncias=sum(s12a_02)) %>% select(depto,denuncias) %>% distinct()
+orden<-aux1 %>% filter(depto=="Oruro") %>% mutate(denuncias=sum(s12a_02)) %>% select(depto,denuncias) %>% distinct()
+pdden<-aux1 %>% filter(depto=="Pando") %>% mutate(denuncias=sum(s12a_02)) %>% select(depto,denuncias) %>% distinct()
+ptden<-aux1 %>% filter(depto=="Potosí") %>% mutate(denuncias=sum(s12a_02)) %>% select(depto,denuncias) %>% distinct()
+scden<-aux1 %>% filter(depto=="Santa Cruz") %>% mutate(denuncias=sum(s12a_02)) %>% select(depto,denuncias) %>% distinct()
+tjden<-aux1 %>% filter(depto=="Tarija") %>% mutate(denuncias=sum(s12a_02)) %>% select(depto,denuncias) %>% distinct()
+den<- do.call("rbind", list(cqden, cbden, bnden, lpden, orden, pdden, ptden, scden, tjden))
+ind4<-ggplot(den, aes(denuncias, depto)) + geom_bar(stat = "identity")
+ggplotly(ind4)
+```
+
+### Indicador 5: Número de no denuncias, por departamento
+
+```{r}
+aux2<-eh19d %>% mutate(s12a_02=as.numeric(factor(s12a_02))) %>% filter(s12a_02==2) %>% select(depto, s12a_02)
+cqnden<-aux2 %>% filter(depto=="Chuquisaca") %>% mutate(no_denuncias=sum(s12a_02)) %>% select(depto,no_denuncias) %>% distinct()
+cbnden<-aux2 %>% filter(depto=="Cochabamba") %>% mutate(no_denuncias=sum(s12a_02)) %>% select(depto,no_denuncias) %>% distinct()
+bnnden<-aux2 %>% filter(depto=="Beni") %>% mutate(no_denuncias=sum(s12a_02)) %>% select(depto,no_denuncias) %>% distinct()
+lpnden<-aux2 %>% filter(depto=="La Paz") %>% mutate(no_denuncias=sum(s12a_02)) %>% select(depto,no_denuncias) %>% distinct()
+ornden<-aux2 %>% filter(depto=="Oruro") %>% mutate(no_denuncias=sum(s12a_02)) %>% select(depto,no_denuncias) %>% distinct()
+pdnden<-aux2 %>% filter(depto=="Pando") %>% mutate(no_denuncias=sum(s12a_02)) %>% select(depto,no_denuncias) %>% distinct()
+ptnden<-aux2 %>% filter(depto=="Potosí") %>% mutate(no_denuncias=sum(s12a_02)) %>% select(depto,no_denuncias) %>% distinct()
+scnden<-aux2 %>% filter(depto=="Santa Cruz") %>% mutate(no_denuncias=sum(s12a_02)) %>% select(depto,no_denuncias) %>% distinct()
+tjnden<-aux2 %>% filter(depto=="Tarija") %>% mutate(no_denuncias=sum(s12a_02)) %>% select(depto,no_denuncias) %>% distinct()
+nden<- do.call("rbind", list(cqnden, cbnden, bnnden, lpnden, ornden, pdnden, ptnden, scnden, tjnden))
+ind5<-ggplot(nden, aes(no_denuncias, depto)) + geom_bar(stat = "identity")
+ggplotly(ind5)
+```
+
+Indicadores 6,7,8 
+=======================================================================
+
+Row {data-width=600}
+-----------------------------------------------------------------------
+
+### Indicador 6: Número de denuncias realizadas en cada institución
+
+```{r}
+aux3<-eh19d %>% mutate(s12a_03_1=as.numeric(factor(s12a_03_1)), s12a_03_2=as.numeric(factor(s12a_03_2)), s12a_03_3=as.numeric(factor(s12a_03_3)), s12a_03_4=as.numeric(factor(s12a_03_4)), s12a_03_5=as.numeric(factor(s12a_03_5)), s12a_03_6=as.numeric(factor(s12a_03_6))) %>% select(depto,s12a_03_1, s12a_03_2, s12a_03_3, s12a_03_4, s12a_03_5, s12a_03_6)
+cnr<-aux3 %>% filter(s12a_03_1==1) %>% mutate(frec=sum(s12a_03_1),nom="Comité Nacional Contra El Racismo") %>% select(nom, frec) %>% distinct()
+pol<-aux3 %>% filter(s12a_03_2==1) %>% mutate(frec=sum(s12a_03_2),nom="Policía") %>% select(nom, frec) %>% distinct()
+mpu<-aux3 %>% filter(s12a_03_3==1) %>% mutate(frec=sum(s12a_03_3),nom="Ministerio Público") %>% select(frec,nom) %>% distinct()
+def<-aux3 %>% filter(s12a_03_4==1) %>% mutate(frec=sum(s12a_03_4),nom="Defensoría") %>% select(frec,nom) %>% distinct()
+sel<-aux3 %>% filter(s12a_03_5==1) %>% mutate(frec=sum(s12a_03_5),nom="Servicio Legal Integral Municipal") %>% select(frec,nom) %>% distinct()
+otr<-aux3 %>% filter(s12a_03_6==1) %>% mutate(frec=sum(s12a_03_6),nom="Otro") %>% select(frec,nom) %>% distinct() 
+den_rel<-do.call("rbind", list(cnr, pol, mpu, def, sel, otr))
+ind6<-ggplot(den_rel, aes(frec,nom))+geom_bar(stat="identity")
+ggplotly(ind6)
+```
+
+### Indicador 8: Sanciones por departamento
+
+```{r}
+aux4<-eh19d %>% mutate(sanc=as.numeric(factor(s12a_04))) %>% select(depto, sanc)
+aux5<-aux4 %>% filter(sanc==2) %>% mutate(no_san=sanc) %>% select(depto, no_san)
+aux4<-aux4 %>% filter(sanc==1) %>% select(depto, sanc)
+lpsan<-aux4 %>% filter(depto=="La Paz") %>% mutate(tot_sanc=sum(sanc)) %>% select(depto,tot_sanc) %>% distinct()
+lpsan1<-aux5 %>% filter(depto=="La Paz") %>% mutate(tot_no_sanc=sum(no_san)) %>% select(depto,tot_no_sanc) %>% distinct()
+lpsan<-lpsan %>% left_join(lpsan1, by=c("depto"="depto")) %>% select(depto, tot_sanc, tot_no_sanc)
+cbsan<-aux4 %>% filter(depto=="Cochabamba") %>% mutate(tot_sanc=sum(sanc)) %>% select(depto,tot_sanc) %>% distinct()
+cbsan1<-aux5 %>% filter(depto=="Cochabamba") %>% mutate(tot_no_sanc=sum(no_san)) %>% select(depto,tot_no_sanc) %>% distinct()
+cbsan<-cbsan %>% left_join(cbsan1, by=c("depto"="depto")) %>% select(depto, tot_sanc, tot_no_sanc)
+orsan<-aux4 %>% filter(depto=="Oruro") %>% mutate(tot_sanc=sum(sanc)) %>% select(depto,tot_sanc) %>% distinct()
+orsan1<-aux5 %>% filter(depto=="Oruro") %>% mutate(tot_no_sanc=sum(no_san)) %>% select(depto,tot_no_sanc) %>% distinct()
+orsan<-orsan %>% left_join(orsan1, by=c("depto"="depto")) %>% select(depto, tot_sanc, tot_no_sanc)
+ptsan<-aux4 %>% filter(depto=="Potosí") %>% mutate(tot_sanc=sum(sanc)) %>% select(depto,tot_sanc) %>% distinct()
+ptsan1<-aux5 %>% filter(depto=="Potosí") %>% mutate(tot_no_sanc=sum(no_san)) %>% select(depto,tot_no_sanc) %>% distinct()
+ptsan<-ptsan %>% left_join(ptsan1, by=c("depto"="depto")) %>% select(depto, tot_sanc, tot_no_sanc)
+tjsan<-aux4 %>% filter(depto=="Tarija") %>% mutate(tot_sanc=sum(sanc)) %>% select(depto,tot_sanc) %>% distinct()
+tjsan1<-aux5 %>% filter(depto=="Tarija") %>% mutate(tot_no_sanc=sum(no_san)) %>% select(depto,tot_no_sanc) %>% distinct()
+tjsan<-tjsan %>% left_join(tjsan1, by=c("depto"="depto")) %>% select(depto, tot_sanc, tot_no_sanc)
+scsan<-aux4 %>% filter(depto=="Santa Cruz") %>% mutate(tot_sanc=sum(sanc)) %>% select(depto,tot_sanc) %>% distinct()
+scsan1<-aux5 %>% filter(depto=="Santa Cruz") %>% mutate(tot_no_sanc=sum(no_san)) %>% select(depto,tot_no_sanc) %>% distinct()
+scsan<-scsan %>% left_join(scsan1, by=c("depto"="depto")) %>% select(depto, tot_sanc, tot_no_sanc)
+pdsan<-aux4 %>% filter(depto=="Pando") %>% mutate(tot_sanc=sum(sanc)) %>% select(depto,tot_sanc) %>% distinct()
+pdsan1<-aux5 %>% filter(depto=="Pando") %>% mutate(tot_no_sanc=sum(no_san)) %>% select(depto,tot_no_sanc) %>% distinct()
+pdsan<-pdsan %>% left_join(pdsan1, by=c("depto"="depto")) %>% select(depto, tot_sanc, tot_no_sanc)
+sanc_dep<-do.call("rbind", list(lpsan, cbsan, orsan, ptsan, tjsan, scsan, pdsan))
+ind8<-ggplot(sanc_dep, aes(depto, tot_sanc))+geom_bar(stat="identity")
+ggplotly(ind8)
+```
+
+
+Row {data-width=450}
+-----------------------------------------------------------------------
+
+### Indicador 7: Tasa de denuncias en cada departamento
+
+```{r}
+den1<-den %>% left_join(nden, by=c("depto"="depto")) %>% select(depto, denuncias, no_denuncias)
+den1<-den1 %>% mutate(tot_den=rowSums(den1[,2:3]), tasa_den=(denuncias/tot_den)*1000) %>% select(depto, tasa_den)
+kable(den1)
+```
+
+
+
+Indicadores 9,10 
+=======================================================================
+
+Row {data-width=450}
+-----------------------------------------------------------------------
+
+### Indicador 9: Número de abstención de denuncias, por razón
+
+```{r}
+#sp_eh19d<-copy_to(sc, eh19d, "eh19d")
+aux6<-eh19d %>% mutate(s12a_05_1=as.numeric(factor(s12a_05_1)),s12a_05_2=as.numeric(factor(s12a_05_2)), s12a_05_3=as.numeric(factor(s12a_05_3)), s12a_05_4=as.numeric(factor(s12a_05_4)), s12a_05_5=as.numeric(factor(s12a_05_5)), s12a_05_6=as.numeric(factor(s12a_05_6)), s12a_05_7=as.numeric(factor(s12a_05_7))) %>% select(depto, s12a_05_1, s12a_05_2, s12a_05_3, s12a_05_4, s12a_05_5, s12a_05_6, s12a_05_7)
+a<-aux6 %>% filter(s12a_05_1==1) %>% mutate(frec=sum(s12a_05_1), nom="Por verguenza") %>% select(nom, frec) %>% distinct()
+a1<-aux6 %>% filter(s12a_05_2==1) %>% mutate(frec=sum(s12a_05_2), nom="No quería que se sepa") %>% select(nom, frec) %>% distinct()
+a2<-aux6 %>% filter(s12a_05_3==1) %>% mutate(frec=sum(s12a_05_3), nom="Por miedo") %>% select(nom, frec) %>% distinct()
+a3<-aux6 %>% filter(s12a_05_4==1) %>% mutate(frec=sum(s12a_05_4), nom="Porque el hecho no importaba") %>% select(nom, frec) %>% distinct()
+a4<-aux6 %>% filter(s12a_05_5==1) %>% mutate(frec=sum(s12a_05_5), nom="no sabía que se podía denunciar") %>% select(nom, frec) %>% distinct()
+a5<-aux6 %>% filter(s12a_05_6==1) %>% mutate(frec=sum(s12a_05_6), nom="No cree en la justicia") %>% select(nom, frec) %>% distinct()
+a6<-aux6 %>% filter(s12a_05_7==1) %>% mutate(frec=sum(s12a_05_7), nom="Otro") %>% select(nom, frec) %>% distinct()
+inde_nun<-do.call("rbind", list(a,a1,a2,a3,a4,a5,a6))
+ind9<-ggplot(inde_nun, aes(frec,nom))+geom_bar(stat="identity")
+#sp_ind9<-copy_to(sc, inde_nun,"inde_num")
+ggplotly(ind9)
+```
+
+Row {data-width=450}
+-----------------------------------------------------------------------
+
+### Indicador 10: Tasa de abstención de denuncias, por departamento
+
+```{r}
+unden<-den %>% left_join(nden, by=c("depto"="depto")) %>% select(depto, denuncias, no_denuncias)
+unden<-unden %>% mutate(tot_den=rowSums(unden[,2:3]), tasa_no_den=(no_denuncias/tot_den)*1000) %>% select(depto, tasa_no_den)
+kable(unden)
+```
+

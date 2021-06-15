@@ -1,25 +1,21 @@
 ---
-title: "Proyecto Big Data"
+title: "Proyecto Big Data: Racismo y discriminación según la encuesta a hogares de 2019"
 author: "Miguel Morales"
 output: html_document
 ---
 
 
 # **1. Introducción**
-El racismo y la discriminación son problemas persistentes en la sociedad boliviana actual, y si bien se ha avanzado en el terreno de la desconolización y despatriarcalización -acuñados después de la creación del Estado Plurinacional de Bolivia- aún persisten a día de hoy, y es un tema a progresar tanto por el Estado como por la sociedad.
-En el presente informe se presentan datos relacionado con el racismo, como estadíscos y gráficos realizados a traves de bases de datos provinientes de diversas fuentes, como la encuesta de racismo que se realizó en la Encuesta a Hogares de 2019, para que nos ayuden a visualizar tanto como se percibe de como se sufre de este delito en los departamentos de Bolivia. 
+El racismo y la discriminación son problemas persistentes en la sociedad boliviana actual, y si bien se ha avanzado en el terreno de la desconolización y despatriarcalización -acuñados después de la creación del Estado Plurinacional de Bolivia- aún persisten a día de hoy, y es un tema a progresar tanto por el Estado como por la sociedad. Por ejemplo, a 2018, se registraron 77 denuncias de agresiones por discriminación, con 49 instituciones públicas y 28 instituciones privadas denunciadas. (REPORTE ESTADÍSTICO
+DENUNCIAS POR RACISMO Y/O DISCRIMINACIÓN - Viceministerio de descolonización)
+En el presente informe se presentan datos relacionado con el racismo y la discriminación, como estadíscos y gráficos realizados a través del análisis de la encuesta de racismo y discriminación que se realizó en la Encuesta a Hogares de 2019, para que ayuden a visualizar tanto como se percibe de como se sufre de este delito en los departamentos de Bolivia. 
+Así mismo, es de notar la ausencia de estudios cuantitativos en lo que respecta la discriminación en bolivia, muchas de las únicas fuentes estadísticas las proporcionan el INE y el Viceministerio de Descolonización; pero no se encuentran muchos análisis sobre estos datos más allá de los que estas mismas fuentes proporcionan. Es por eso que se debe reflexionar sobre la importancia de los estudios estadísticos de temas sociales. 
 
 # **2. Objetivos**
-Como objetivo del presente estudio, se pretende establecer un registro del racismo y discriminacion que se frecuenta en Bolivia, a través de estadísticas y gráficos que permitan visualizar desde los lugares más frecuentes de esta practica a el delito más común, y establecer el perfil de la víctima.
-Como objetivos específicos, se plantea:
- * Establecer los porcentajes de discriminación a nivel departamental.
- * Determinar la causa más frecuente de racismo.
- * Determinar el porcentaje de denuncias realizadas por las vícitmas
- * Determinar la causa más común para no denunciar los hechos delictivos.
- * Con los anteriores objetivos, establecer un perfil de la victima.
+Como objetivo del presente estudio, se pretende establecer un registro del racismo y discriminacion que se frecuenta en Bolivia, en base a la encuesta de hogares del 2019, a través de estadísticas y gráficos que permitan visualizar desde los lugares más frecuentes de esta practica a el delito más común.
 
-# **3.Motivación**
-Dada la historia de La Paz, y en consecuencia, la de Bolivia, somos concientes de la cantidad de racismo presente en la ciudad, de estratos sociales y económicos altos hacia los bajos, y como esto llevó a sublevaciones por los últimos hacia los primeros, en esperanzas de poder frenar la desigualdad tan marcada en la sociedad. En los últimos años, el racismo es una práctica en descenso, en parte por que existen leyes que castigan estas prácticas, pero sigue estando enraizada en la ciudad, por lo que es importante visibilizar a través de datos como se violentan los derechos de las personas, en especial de aquellas de ascendencia indígena. Es este el motivo de este trabajo, habiendo sido testigo del racismo persistente en la sociedad, que llega a mostrar su verdadera cara en momentos tensos del paradigma político y social. 
+# **3. Motivación**
+Como se vé en la encuesta a hogares del 2019, y los reportes estadísticos sobre denuncias de discriminación, son prácticas que aún persisten y que afectan a un pocentaje de la población; si bien en la misma encuesta se observa que hay una mayoría de los encuestados que no sufrieron algún tipo de discriminación, es necesario resgistrar, analizar y reflexionar sobre los que si son víctimas de racismo y discriminación. Es ésta la principal motivación de este trabajo. 
 
 # **4. Marco Teórico**
 Racismo, se puede entender como el conjunto de prácticas y actitudes discriminatorias de un grupo humano hacia otro, basado en sus rasgos intrínsecos, como los rasgos físicos y culturales. Segun ACNUR*, existen distintos tipos de racismo, como racismo aversivo, que es un racismo sutil, expresado mayormente a través de la empatía, frialdad y distanciamiento que pueda expresar una persona hacia otra; racismo etnocentrista, en la que un grupo asume una superioridad cultural frente a otros grupos, y considera a estos otros como amenaza y así mismo rechaza las costumbres, creencias, religiones o lenguas extranjeras al grupo propio; racismo simbólico, respeta el derecho a existir de otros grupos, pero bajo ciertas condiciones, que a la larga generan una segregación cultural entre los distintos grupos; y el racismo biológico, que considera a una raza como superior a otras.
@@ -30,19 +26,251 @@ La historia boliviana en los años restantes del siglo XX están marcados por un
 De aquí la importancia sobre estudios relativos al racismo, para que se pueda profundizar sobre el tema de la tensión racial y así poder estructurar cambios que puedan revertir esta situación.
 
 # **5. Descripción de la base de datos**
-Se trabajará sobre la base de datos de la encuesta a hogares del 2019, en la categoría discriminación. Posee 38 variables y 11776 observaciones. Es una encuesta de jefes de hogar de Bolivia en que se recolectó la información respecto a la victimización sobre actos racistas.
+Se trabajará sobre la base de datos de la encuesta a hogares del 2019, en la categoría discriminación. Posee 38 variables y 11776 observaciones. Es una encuesta de jefes de hogar de Bolivia en que se recolectó la información respecto a la victimización sobre actos discriminatorios.
 
 # **6. Metodología**
-Sobre los indicadores, Se realizará:
- * Tipo de discriminación sufrida, por departamento y área
- * 
+Se construyen los indicadores y ficha de indicadores:
+
+### **Indicador 1: Total de agresiones discriminatorias en cada departamento**
+
+**Objetivo:** Conocer el número total de agresiones discriminatorias en cada departamento, y ubicarlas en un mapa.
+
+**Definiciones y conceptos:** Población que haya sufrido alguna clase de agresión.
+
+**Método de medición:** Se extrae el número de agresiones de la base de datos (EH19discriminación), se las suma y se obtiene un data frame con los departamentos y el número total de agresiones que se hayan registrado en el mismo. Posteriormente se grafica en un mapa.
+
+**Unidad de medida:** Nº de personas.
+
+**Fórmula:** $$TAD_i = \sum_j AG_j$$
+Dónde: $TAD_i$ es el número total de agresiones en el departamento $i$, $\sum_j AG_j$ es la suma de todos los tipos de agresiones $j$.
+
+**Variables:** Se toman en cuenta las variables:
+
+ - Departamento: pregunta *depto*, departamento.
+ - Discriminación de género: pregunta *s12a_01a*, ¿En los últimos 12 meses, ha sido discriminado por cualquiera de los siguientes motivos: Orientación sexual e identidad de género
+ - Discriminación de edad: pregunta *s12a_01b*, ¿En los últimos 12 meses, ha sido discriminado por cualquiera de los siguientes motivos: Edad
+ - Discriminación sexual: pregunta *s12a_01c*, ¿En los últimos 12 meses, ha sido discriminado por cualquiera de los siguientes motivos: Sexo(Hombre, mujer)
+ - Discriminación racial: pregunta *s12a_01d*, ¿En los últimos 12 meses, ha sido discriminado por cualquiera de los siguientes motivos: Color de piel
+ - Discriminación indígena: pregunta *s12a_01e*, ¿En los últimos 12 meses, ha sido discriminado por cualquiera de los siguientes motivos: Pertenencia a Nación, Pueblo, Indigena, Originario, Campesino (NPIOC)
+ - Discriminación linguística: pregunta *s12a_01f*, ¿En los últimos 12 meses, ha sido discriminado por cualquiera de los siguientes motivos: Idioma
+ - Discriminación por vestimenta: pregunta *s12a_01g*, ¿En los últimos 12 meses, ha sido discriminado por cualquiera de los siguientes motivos: Vestimenta
+ - Discriminación xenofóbica: pregunta *s12a_01h*, ¿En los últimos 12 meses, ha sido discriminado por cualquiera de los siguientes motivos: Procedencia regional o nacionalidad extranjera
+ - Discriminación por discapacidad: pregunta *s12a_01i*, ¿En los últimos 12 meses, ha sido discriminado por cualquiera de los siguientes motivos: Discapacidad
+ - Discriminación religiosa: pregunta *s12a_01j*, ¿En los últimos 12 meses, ha sido discriminado por cualquiera de los siguientes motivos: Religión
+ - Discriminación por condición social: pregunta *s12a_01k*, ¿En los últimos 12 meses, ha sido discriminado por cualquiera de los siguientes motivos: Condición económica o social (pobre, rico)
+ - Otra discriminación: pregunta *s12a_01l*, ¿En los últimos 12 meses, ha sido discriminado por cualquiera de los siguientes motivos: Otro motivo
+
+**Limitaciones del indicador:** Solo mide el número total de agresiones registrados, más no es específico.
+
+### **Indicador 2: Número de personas agredidas por NPIOC, según departamento**
+
+**Objetivo:** Observar el número de personas que han sido discriminadas por Pertenencia a Nación, Pueblo, Indigena, Originario, Campesino; por departamento.
+
+**Definiciones y conceptos:** Personas que tengan, o se reconozcan como pertenecientes a naciones, pueblos indígenas, originarios y/o campesinos.
+
+**Método de medición:** Como se extrajo el número de cada tipo de agresión por departamento en el indicador 1, ahora se mide el número de agresiones por Pertenencia a Nación, Pueblo, Indigena, Originario, Campesino, específicamente. Se obtiene un data frame con el número total de este tipo de agresiones por departamento. 
+
+**Unidad de medida:** Nº de agresiones por Pertenencia a Nación, Pueblo, Indigena, Originario.
+
+**Fórmula:** $$NPOICdep_i=\sum_j NPOIC_j$$
+Dónde: $NPOICdep_i$ es el número total de agresiones por Pertenencia a Nación, Pueblo, Indigena, Originario, $\sum_j NPOIC_j$ es suma de agresiones por Pertenencia a Nación, Pueblo, Indigena, Originario.
+
+**Variables:** Se toman en cuenta las variables:
+
+ - Departamento: pregunta *depto*, departamento.
+ - Discriminación indígena: pregunta *s12a_01e*, ¿En los últimos 12 meses, ha sido discriminado por cualquiera de los siguientes motivos: Pertenencia a Nación, Pueblo, Indigena, Originario, Campesino (NPIOC)
+
+**Limitaciones del indicador:** Este indicador solo mide el número total de un tipo de agresión.
+
+### **Indicador 3: Número de personas agredidas por color de piel, según departamento**
+
+**Objetivo:** Explicitar el número de personas agredidas por su color de piel, según el departamento.
+
+**Definiciones y conceptos:** Personas que hayan experimentado discriminación en base a su color de piel.
+
+**Método de medición:** De la misma manera que el estimador 2, se suma el número de discriminaciones por color de piel, y se obtiene un data frame con el número total de agresiones de este tipo por departamento. 
+
+**Unidad de medida:** Nº de agresiones por color de piel.
+
+**Fórmula:** $$CoPdep_i=\sum_j CoP_j$$
+Dónde: $\sum_j CoP_j$ es la suma de todas las agresiones por color de piel en un departamento.
+
+**Variables:** Se toman en cuenta las variables:
+
+ - Departamento: pregunta *depto*, departamento.
+ - Discriminación racial: pregunta *s12a_01d*, ¿En los últimos 12 meses, ha sido discriminado por cualquiera de los siguientes motivos: Color de piel
+
+**Limitaciones del indicador:** Este indicador solo toma en cuenta el total de agresiones por color de piel en cada departamento.
+
+### **Indicador 4: Número de denuncias realizadas por departamento**
+
+**Objetivo:** Mostrar cuantas denuncias por agresiones discriminatorias se realizaron a nivel departamental.
+
+**Definiciones y conceptos:** Personas que hayan sido víctimas de agresiones discriminatorias y que hayan realizado una denuncia.
+
+**Método de medición:** Se extrae el número de denuncias por alguna agresión, y se las suma por departamento.
+
+**Unidad de medida:** Nº de denuncias por agresión discriminatoria.
+
+**Fórmula:** $$DEN_i=\sum_j den_j$$
+Dónde $DEN_i$ es el número total de denuncias en el departamento $i$, y $\sum_j den_j$ es la suma de todas las denuncias en el departamento $j$
+
+**Variables:** Se toman en cuenta las variables:
+ - Departamento: *depto*
+ - Denuncias formales: *s12a_02*, ¿Presentó una denuncia formal contra el(la) agresor(a)?
+
+**Limitaciones del indicador:** Solo se tiene el número total de denuncias en cada departamento, más no especifica el tipo.
+
+### **Indicador 5: Número de no denuncias, por departamento**
+
+**Objetivo:** Se pretende tener un gráfico que muestre las denuncias que no se realizaron, por departamento.
+
+**Definiciones y conceptos:** Similarmente al indicador 4, se consideran todas las denuncias no realizadas en cada departamento 
+
+**Método de medición:** Se extraen todas las no denuncias por departamento, y se suman.
+
+**Unidad de medida:** Nº de no denuncias.
+
+**Fórmula:** $$NoDEN_i=\sum_j noden_j$$
+Dónde: $NoDEN_i$ es el número total de no denuncias en el i-ésimo departamento, y $\sum_j noden_j$ es la suma de todas las no denuncias en el depto i-ésimo.
+
+**Variables:** Se toman en cuenta las variables:
+ - Departamento: *depto*
+ - Denuncias formales: *s12a_02*, ¿Presentó una denuncia formal contra el(la) agresor(a)?
+
+**Limitaciones del indicador:** Como el indicador 4, sólo se tiene el número total de no denuncias en cada departamento.
+
+### **Indicador 6: Número de denuncias realizadas en cada institución**
+
+**Objetivo:** Mostrar cuantas denuncias se realizaron en cada institución.
+
+**Definiciones y conceptos:** Todas las denuncias que se efectuaron en instituciones.
+
+**Método de medición:** Se toman los casos afirmativos de denuncias en cada instituciones, y se suman.
+
+**Unidad de medida:** Nº de denuncias en una institución $i$
+
+**Fórmula:** $$INS_i=\sum dei_j$$
+Dónde: $INS_i$ es el número total de denuncias que se realizaron en la institución $i$, y $\sum dei_j$ es la suma de denuncias en la institución $i$
+
+**Variables:** Se toman en cuenta las variables:
+ - Denuncia en el CNCRyTD: *s12a_03_1*, ¿Dónde ha acudido para realizar la denuncia formal?: Comité Nacional Contra el Racismo y Toda Forma de Discriminación
+ - Denuncia en la Policía: *s12a_03_2*, ¿Dónde ha acudido para realizar la denuncia formal?: Policia
+ - Denuncia en el Ministerio Público: *s12a_03_3*, ¿Dónde ha acudido para realizar la denuncia formal?: Ministerio Público (Fiscalia)
+ - Denuncia en Defensorías: *s12a_03_4*, ¿Dónde ha acudido para realizar la denuncia formal?: Defensorias
+ - Denuncia en el SLIM: *s12a_03_5*, ¿Dónde ha acudido para realizar la denuncia formal?: Servicio Legal Integral Municipal (SLIM)
+ - Denuncia en otras instituciones: *s12a_03_6*, ¿Dónde ha acudido para realizar la denuncia formal?: Otros
+
+**Limitaciones del indicador:** Este indicador sólo mide el número total de denuncias realizadas en cada institución.
+
+### **Indicador 7: Tasa de denuncias en cada departamento**
+
+**Objetivo:** Conocer la tasa de denuncias realizadas en cada departamento.
+
+**Definiciones y conceptos:** La tasa de denuncias es el número de denuncias realizadas en cada departamento sobre el número de total de agresiones.
+
+**Método de medición:** De las denuncias y no denuncias, se suma por departamento, posteriormente se dividen las denuncias y el total de denuncias más no denuncias.
+
+**Unidad de medida:** % Porcentaje
+ 
+**Fórmula:** $$TDen_i= den_i/agr_i *1000 $$
+Dónde: $TDen_i$ es la tasa de denuncias en el departamento $i$, $den_i$ es el total de las denuncias en el departamento $i$, y $agr_i$ es el total de agresiones en el departamento $i$, obtenido de sumar el total de denuncias y no denuncias en el departamento $i$.
+
+**Variables:** Se toman en cuenta las variables:
+ - Departamento: *depto*
+ - Denuncia en el CNCRyTD: *s12a_03_1*, ¿Dónde ha acudido para realizar la denuncia formal?: Comité Nacional Contra el Racismo y Toda Forma de Discriminación
+ - Denuncia en la Policía: *s12a_03_2*, ¿Dónde ha acudido para realizar la denuncia formal?: Policia
+ - Denuncia en el Ministerio Público: *s12a_03_3*, ¿Dónde ha acudido para realizar la denuncia formal?: Ministerio Público (Fiscalia)
+ - Denuncia en Defensorías: *s12a_03_4*, ¿Dónde ha acudido para realizar la denuncia formal?: Defensorias
+ - Denuncia en el SLIM: *s12a_03_5*, ¿Dónde ha acudido para realizar la denuncia formal?: Servicio Legal Integral Municipal (SLIM)
+ - Denuncia en otras instituciones: *s12a_03_6*, ¿Dónde ha acudido para realizar la denuncia formal?: Otros
+
+### **Indicador 8: Sanciones por departamento** 
+
+**Objetivo:** Medir el total de sanciones en cada departamento.
+
+**Definiciones y conceptos:** Se establecen todas las saciones ocurridas en cada departamento.
+
+**Método de medición:** Se suman las sanciones que se registraron en cada departamento.
+
+**Unidad de medida:** Nº de denuncias a agresores.
+
+**Fórmula:** $$TSA_i=\sum_j sanc_j$$
+Dónde: $TSA_i$ es el total de sanciones en el departamento $i$, $\sum_j sanc_j$ es la suma de las j-ésimas sanciones en el departamento $i$
+
+**Variables:** Se toman en cuenta las variables:
+ - Departamento: *depto*
+ - Vergüenza a denunciar: *s12a_05_1*, ¿Por qué no presentó una denuncia formal?: Por vergüenza
+ - No quería hacer saber de la denuncia: *s12a_05_2*, ¿Por qué no presentó una denuncia formal?: No queria que se sepa
+ - Miedo a denunciar: *s12a_05_3*, ¿Por qué no presentó una denuncia formal?: Por miedo
+ - No lo consideraba importante: *s12a_05_4*, ¿Por qué no presentó una denuncia formal?: Porque se trato de un hecho sin importancia
+ - No sabía que podia denunciar: *s12a_05_5*, ¿Por qué no presentó una denuncia formal?: No sabía que podía denunciar
+ - No cree en la justicia: *s12a_05_6*, ¿Por qué no presentó una denuncia formal?: No cree en la justicia
+ - Otro: *s12a_05_7*, ¿Por qué no presentó una denuncia formal?: Otro
+
+**Limitaciones del indicador:** Sólo se mide el número total de denuncias en cada departamento, sin especificar.
+
+### **Indicador 9: Número de abstención de denuncias, por razón**
+
+**Objetivo:** Medir el número de razones de abstenerse a denunciar.
+
+**Definiciones y conceptos:** Existen un conjunto de razones por las que no se denunció un hecho discriminatorio establecidos en la encuesta a hogares de 2019.
+
+**Método de medición:** Se contabilizan las razones por las que no se denunció, y se suman por cada razón.
+
+**Unidad de medida:** Nº de no denuncias registradas según la razón.
+
+**Fórmula:** $$RAZ_i=\sum_j agr_j$$
+Dónde: $RAZ_i$ es el número total de no denuncias por la razón $i$, $\sum_j agr_j$ es la suma de las j-ésimas no denuncias por la razón i-ésima.
+
+**Variables:** Se toman en cuenta las variables:
+ - Vergüenza a denunciar: *s12a_05_1*, ¿Por qué no presentó una denuncia formal?: Por vergüenza
+ - No quería hacer saber de la denuncia: *s12a_05_2*, ¿Por qué no presentó una denuncia formal?: No queria que se sepa
+ - Miedo a denunciar: *s12a_05_3*, ¿Por qué no presentó una denuncia formal?: Por miedo
+ - No lo consideraba importante: *s12a_05_4*, ¿Por qué no presentó una denuncia formal?: Porque se trato de un hecho sin importancia
+ - No sabía que podia denunciar: *s12a_05_5*, ¿Por qué no presentó una denuncia formal?: No sabía que podía denunciar
+ - No cree en la justicia: *s12a_05_6*, ¿Por qué no presentó una denuncia formal?: No cree en la justicia
+ - Otro: *s12a_05_7*, ¿Por qué no presentó una denuncia formal?: Otro
+
+**Limitaciones del indicador:** Se tiene el total de las no denuncias por cierta razón, pero no mide el departamento.
+
+### **Indicador 10: Tasa de abstención de denuncias, por departamento**
+
+**Objetivo:** Medir la tasa de la abstención de denuncias en cada departamento.
+
+**Definiciones y conceptos:** La tasa de abstención es el número de no denuncias entre el total de agresiones.
+
+**Método de medición:** Se obtiene el total de no denuncias en cada departamento, se lo divide entre el total de agresiones en cada departamento y se lo multiplica por 1000. 
+
+**Unidad de medida:** % Porcentaje
+
+**Fórmula:** $$TAD_i=\frac{Nden_i}{Tag_i}*1000$$
+Dónde: $TAD_i$ es la tasa de abstención de denuncias en el departamento $i$, $Nden_i$ es el total de no denuncias en el departamento $i$, $Tag_i$ es el total de agresiones en el departamento $i$.
+**Variables:** Se toman en cuenta las variables:
+ - Departamento: *depto*
+ - Denuncia en el CNCRyTD: *s12a_03_1*, ¿Dónde ha acudido para realizar la denuncia formal?: Comité Nacional Contra el Racismo y Toda Forma de Discriminación
+ - Denuncia en la Policía: *s12a_03_2*, ¿Dónde ha acudido para realizar la denuncia formal?: Policia
+ - Denuncia en el Ministerio Público: *s12a_03_3*, ¿Dónde ha acudido para realizar la denuncia formal?: Ministerio Público (Fiscalia)
+ - Denuncia en Defensorías: *s12a_03_4*, ¿Dónde ha acudido para realizar la denuncia formal?: Defensorias
+ - Denuncia en el SLIM: *s12a_03_5*, ¿Dónde ha acudido para realizar la denuncia formal?: Servicio Legal Integral Municipal (SLIM)
+ - Denuncia en otras instituciones: *s12a_03_6*, ¿Dónde ha acudido para realizar la denuncia formal?: Otros
+
+# **7. Resultados y análisis**
+Para los resultados de los indicadores, referir al dashboard.
+En el análisis, se tiene que el 52,99% identificó que sufrió al menos una agresión por discriminación en todos los departamentos.
+El 2,20% de todos los encuestados describió que tuvo una agresión por Pertenencia a Pueblo Indígena,  Originario o Campesino.
+El 1,86% describió agresiones a su persona por el color de su piel.
+El departamento con más agresiones es el departamento del Beni, con 2008 registros, o 32,17% de todas las agresiones registradas en la encuesta.
+El departamento con más denuncias es Cochabamba, con 21,13% de todas las denuncias registradas.
+
+# **8. Conclusiones y recomendaciones**
+El racismo y la discriminación son temas que siguen bastante presentes en la sociedad boliviana, por eso es necesario seguir con los estudios académicos que profundicen en las raíces de estos problemas. Entendiendo los matices de la discriminación se pude llevar a cabo progamas de concientización y reflexión. Así mismo, también es necesario profundizar en la discriminación a través de las ciencias exactas, porque así es posible establecer cuantitativamente un perfil de la víctima de la discriminación y del victimario, y conocer a detalle como se relacionan ambos.
 
 # **Bibliografía**
+ - Viceministerio de descolonización, 2018. _Reporte estadístico: Denuncias por racismo y/o discriminación, hasta el 30 de abril de 2018_ (https://noracismo.gob.bo/archivos-pdf/REPORTE-DENUNCIAS-AL-30-ABRIL-2018.pdf) 
  - Comité español de ACNUR, 2019. _¿Qué es el racismo y qué tipos de racismo hay?_ (https://eacnur.org/blog/que-es-el-racismo-y-tipos-de-racismo-tc-alt45664n-o-pstn-o-pst/)  
  - Lothar Knauth, 2000. _Los procesos del racismo_ (http://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S1607-050X2000000200003)
  - Ali Valdivia, Carina Aracely, 2017. _APLICACIÓN DE LA TEORÍA DE LOS ACTOS DEL HABLA AL ANÁLISIS DE LAS FALTAS DISCIPLINARIAS POR MOTIVOS RACISTAS Y/O DISCRIMINATORIOS EN INSTITUCIONES PÚBLICAS Y PRIVADAS_
 (https://repositorio.umsa.bo/xmlui/bitstream/handle/123456789/19230/T5221.pdf?sequence=1&isAllowed=y)
-
-http://library.fes.de/pdf-files/bueros/bolivien/17562.pdf
-http://www.observatoriolgbt.org.bo/index.php/estadistica/detalle/cod_estadistica/5
-https://noracismo.gob.bo/archivos-pdf/REPORTE-DENUNCIAS-AL-30-ABRIL-2018.pdf
+ - Mapa de Bolivia proporcionado por Geosinager (http://geosinager.defensacivil.gob.bo/layers/geonode%3Alimites_departamentales_bol)
+ 
